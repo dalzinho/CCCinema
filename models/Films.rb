@@ -37,4 +37,15 @@ class Film
     SqlRunner.run(sql)
   end
 
+  def self.get_by_id(search_id)
+    sql = "SELECT * FROM films WHERE film_id = #{search_id};"
+    SqlRunner.run(sql).first
+  end
+
+  def how_many_customers()
+    sql = "SELECT * from tickets WHERE film_id = #{@film_id};"
+    return SqlRunner.run(sql).count
+    
+  end
+
 end

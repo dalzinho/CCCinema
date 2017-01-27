@@ -5,7 +5,7 @@ DROP TABLE tickets;
 CREATE TABLE customers (
   customer_id SERIAL4 primary key,
   name VARCHAR(255),
-  funds INT4
+  funds INT4 CHECK(funds >= 0)
 
 );
 
