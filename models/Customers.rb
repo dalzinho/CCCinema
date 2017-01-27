@@ -36,20 +36,23 @@ class Customer
   end
 
   def buy_ticket(film_id, quantity)
-    price = Film.get_by_id(film_id)['price'].to_i
-
-    unless quantity * price > @funds
-      quantity.times do
-        new_ticket = Ticket.new({'customer_id' => @customer_id, 'film_id' => film_id}).save
-        @funds -= price
-        self.update()
+    film = Film.get_by_id(film_id)
+    if quantity <= film.remaining
+      unless quantity * film.price > @funds
+        quantity.times do
+          Ticket.new({'customer_id' => @customer_id, 'film_id' => film_id}).save
+          @funds -= film.price
+          film.ticket_sold
+          self.update()
+        end
+      else return "Sorry, insufficient funds!"
       end
-    else return "Sorry, insufficient funds!"
+    else return "Sorry, not enough tickets left!"
     end
   end
 
   def ticket_count()
-    sql ="SELECT * FROM tickets WHERE customer_id = '#{@customer_id}'"
+    sql ="SELECT * FROM tickets WHERE customer_id = '#{@customer_id}';"
     result = SqlRunner.run(sql)
     return result.count
   end
