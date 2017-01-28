@@ -55,4 +55,13 @@ class Film
     self.update()
   end
 
+  def busiest_time()
+    
+    sql = "SELECT mode() WITHIN GROUP (ORDER BY showtime) AS showtime FROM tickets;"
+    # you won't be surprised to learn that the query above came from a bit of googling. I think I get what it does, but don't ask me to do it again :D
+    result = SqlRunner.run(sql).first
+    return Ticket.new(result).showtime
+    
+  end
+
 end

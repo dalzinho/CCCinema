@@ -6,6 +6,7 @@ require './db/SqlRunner'
 
 require 'pry-byebug'
 
+
 customer1 = Customer.new({ 'name' => 'Jim Baxter', 'funds' => 20})
 customer2 = Customer.new({ 'name' => 'Billy Bremner', 'funds' => 20})
 customer3 = Customer.new({ 'name' => 'Matt Busby', 'funds' => 20})
@@ -29,15 +30,20 @@ film1.save
 film2.save
 film3.save
 
-ticket1 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film1.film_id})
-ticket2 = Ticket.new({'customer_id' => customer5.customer_id, 'film_id' => film3.film_id})
-ticket3 = Ticket.new({'customer_id' => customer2.customer_id, 'film_id' => film3.film_id})
-ticket4 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film2.film_id})
+ticket1 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film1.film_id, 'showtime' => '12:00'})
+ticket2 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film1.film_id, 'showtime' => '12:00'})
+ticket3 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film1.film_id, 'showtime' => '13:00'})
+ticket4 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film1.film_id, 'showtime' => '13:00'})
+ticket5 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film1.film_id, 'showtime' => '13:00'})
+# ticket2 = Ticket.new({'customer_id' => customer5.customer_id, 'film_id' => film3.film_id})
+# ticket3 = Ticket.new({'customer_id' => customer2.customer_id, 'film_id' => film3.film_id})
+# ticket4 = Ticket.new({'customer_id' => customer1.customer_id, 'film_id' => film2.film_id})
 
 ticket1.save
 ticket2.save
 ticket3.save
 ticket4.save
+ticket5.save
 
 binding.pry
 nil

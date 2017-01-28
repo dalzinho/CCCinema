@@ -20,6 +20,8 @@ CREATE TABLE films (
 CREATE TABLE tickets (
   ticket_id SERIAL4 primary key,
   customer_id INT4 references customers(customer_id) ON DELETE CASCADE,
-  film_id INT4 references films(film_id) ON DELETE CASCADE
+  film_id INT4 references films(film_id) ON DELETE CASCADE,
+  showtime time not null
+
 
 );
