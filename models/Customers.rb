@@ -60,7 +60,8 @@ class Customer
   def history()
     # db query; will require a join of tickets and films
     sql = "SELECT f.title, t.showtime FROM films f INNER JOIN tickets t ON f.film_id = t.film_id WHERE t.customer_id = #{@customer_id};"
-    SqlRunner.run(sql).map { |item| puts item }
+    SqlRunner.run(sql).map { |item| History.new(item) }
+
 
     # iterate through the tuple to give a list
     # create class for response

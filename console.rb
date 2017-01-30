@@ -1,6 +1,7 @@
 require './models/Customers.rb'
 require './models/Films.rb'
 require './models/Tickets.rb'
+require './models/History.rb'
 
 require './db/SqlRunner'
 
